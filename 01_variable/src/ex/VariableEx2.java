@@ -22,6 +22,7 @@ public class VariableEx2 {
 		
 		System.out.println("result1: " + result1);
 		
+		System.out.println("");
 		System.out.println("-자동 형변환 예시 2-");
 		
 		char ch2 = 'A'; // A는 유니코드 65번
@@ -31,6 +32,7 @@ public class VariableEx2 {
 		
 		System.out.println("result2: " + result2);
 		
+		System.out.println("");
 		System.out.println("-자동 형변환 예시 3-");
 		
 		int a3 = 3;
@@ -40,6 +42,7 @@ public class VariableEx2 {
 		
 		System.out.println("result3: " + result3); // 값의 범위가 관계없는 자동 형변환의 예외 경우
 		
+		System.out.println("");
 		System.out.println("-자동 형변환 예시 4-"); // 자동 형변환이 안되는 경우, 강제 형변환 이용
 		
 		int a4 = 100;

@@ -22,9 +22,11 @@ public class VariableEx1 {
 		num1 = 0; // 자바 지역 변수는 초기화(초기값 대입)를 하지않은 경우 출력, 연산을 할 수 없음. 단, 대입 연산은 제외
 		System.out.println("num1: " + num1);
 		
+		System.out.println("");
 		System.out.println("[자료형별 리터럴 작성법]");
 		
 		// 논리형: boolean(1byte)
+		System.out.println("");
 		System.out.println("-논리형-");
 		
 		boolean bool1 = true;
@@ -38,6 +40,7 @@ public class VariableEx1 {
 		}
 		
 		// 정수형: byte(1byte), short(2byte), int(4byte), long(8byte)
+		System.out.println("");
 		System.out.println("-정수형-");
 		
 		int intNum1 = 2147483647; // int 최대값
@@ -54,6 +57,7 @@ public class VariableEx1 {
 //		short shortNum = 20000;
 		
 		// 실수형: float(4byte), double(8byte)
+		System.out.println("");
 		System.out.println("-실수형-");
 		
 		float floatNum = 1.123456789f; // 일반 실수 표기법은 double로 인식하기 때문이 f표기
@@ -64,6 +68,7 @@ public class VariableEx1 {
 		
 		// 문자형: char(2byte) -> 리터럴 표기법: ''
 		// 문자형은 실제로는 정수(유니코드)를 저장 -> 문자형이지만 정수형으로 취급
+		System.out.println("");
 		System.out.println("-문자형-");
 		
 		char ch1 = 'A'; // A를 나타내는 유니코드 65(\u0041)가 저장됨

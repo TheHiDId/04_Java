@@ -19,6 +19,7 @@ public class VariableEx3 {
 		System.out.println("num1: " + num1);
 		System.out.println("result1: " + result1);
 		
+		System.out.println("");
 		System.out.println("-강제 형변환 예제 2: 데이터 손실 2-");
 		
 		double num2 = 123.999;
@@ -27,6 +28,7 @@ public class VariableEx3 {
 		System.out.println("num2: " + num2);
 		System.out.println("result2: " + result2);
 		
+		System.out.println("");
 		System.out.println("-강제 형변환 예제 3: 의도적 데이터 손실 사용-");
 		
 		for(int i = 0; i < 5; i++) {
@@ -34,6 +36,7 @@ public class VariableEx3 {
 			System.out.println("randomNumber: " + randomNumber);
 		}
 		
+		System.out.println("");
 		System.out.println("-강제 형변환 예제 4: 의도적 자료형 변환 1-");
 		
 		int a3 = 5;
@@ -44,7 +47,8 @@ public class VariableEx3 {
 		System.out.println("result3: " + result3);
 		System.out.println("result4: " + result4); // 자동 형변환 적용
 		
-		System.out.println("-강제 형변환 예제 4: 의도적 자료형 변환 2-");
+		System.out.println("");
+		System.out.println("-강제 형변환 예제 5: 의도적 자료형 변환 2-");
 		
 		System.out.println("A의 유니코드 번호: " + (int)'A');
 		System.out.println("A 뒤 열번째 문자: " + (char)('A' + 10));
