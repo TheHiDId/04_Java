@@ -46,16 +46,16 @@ public class FunctionGradeDiscriminator {
 //			rating = "F";
 //		}
 		
-		switch((int)(totalResult / 5)) {
-		case 20, 19: rating = "A+"; break;
-		case 18: rating = "A"; break;
-		case 17: rating = "B+"; break;
-		case 16: rating = "B"; break;
-		case 15: rating = "C+"; break;
-		case 14: rating = "C"; break;
-		case 13: rating = "D+"; break;
-		case 12: rating = "D"; break;
-		default: rating = "F";
+		switch((int)totalResult / 5) {
+			case 20, 19: rating = "A+"; break;
+			case 18: rating = "A"; break;
+			case 17: rating = "B+"; break;
+			case 16: rating = "B"; break;
+			case 15: rating = "C+"; break;
+			case 14: rating = "C"; break;
+			case 13: rating = "D+"; break;
+			case 12: rating = "D"; break;
+			default: rating = "F";
 		}
 		
 		System.out.println();
