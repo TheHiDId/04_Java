@@ -106,11 +106,12 @@ public class LoopPractice {
 		System.out.print("정수 입력: ");
 		int inputNum = sc.nextInt();
 		
-		String star = "";
-		
 		for(int i = 1; i <= inputNum; i++) {
-			star += "*";
-			System.out.println(star);
+			for(int j = 1; j <= i; j++) {
+				System.out.print("*");
+			}
+			
+			System.out.println();
 		}
 	}
 	
@@ -148,11 +149,12 @@ public class LoopPractice {
 		System.out.print("정수 입력: ");
 		int inputNum = sc.nextInt();
 		
-		String star = "";
-		
 		for(int i = 1; i <= inputNum; i++) {
-			star += "*";
-			System.out.println(star);
+			for(int j = 1; j <= i; j++) {
+				System.out.print("*");
+			}
+			
+			System.out.println();
 		}
 		
 		for (int i = 0; i <= (inputNum - 2); i++) {
@@ -287,51 +289,16 @@ public class LoopPractice {
 		int primeCount = 0;
 		
 		for(int i = 2; i <= inputNum; i++) {
-			boolean checked = true;
+			boolean flag = true;
 			
 			for(int j = 2; j <= i; j++) {
 				if(i % j == 0 && i != j) {
-					checked = false;
+					flag = false;
 					break;
 				} 
 			}
 			
-			if(checked) {
-				primeNum += (i + " ");
-				primeCount++;
-			}
-		}
-		
-		System.out.println(primeNum);
-		System.out.printf("2부터 %d까지 소수의 개수는 %d개입니다.", inputNum, primeCount);
-	}
-	
-	/**
-	 * 무조건 1000입력 소수 중 마지막 자리가 7인 경우만 출력
-	 */
-	public void practice17() {
-		System.out.print("숫자: ");
-		int inputNum = sc.nextInt();
-		
-		if(inputNum < 2) {
-			System.out.println("잘못 입력하셨습니다.");
-			return;
-		}
-		
-		String primeNum = "";
-		int primeCount = 0;
-		
-		for(int i = 2; i <= inputNum; i++) {
-			boolean checked = true;
-			
-			for(int j = 2; j <= i; j++) {
-				if(i % j == 0 && i != j) {
-					checked = false;
-					break;
-				} 
-			}
-			
-			if(checked) {
+			if(flag) {
 				primeNum += (i + " ");
 				primeCount++;
 			}
