@@ -34,7 +34,18 @@ public class Student extends Person {
 		this.schoolName = schoolName;
 	}
 	
+	/*
+	 * super 참조 변수(부모 참조 변수)
+	 * 자식 내 부모 객체를 참조하는 변수
+	 * 부모의 필드, 메서드에 접근하기 위해 사용
+	 */
 	public String toString() {
-		return String.format("name: %s / age: %d / schoolName: %s", getName(), getAge(), schoolName);
+		return super.toString() + " / schoolName: " + schoolName; // 부모의 toString() 메서드 호출
+//		return String.format("name: %s / age: %d / schoolName: %s", getName(), getAge(), schoolName);
+	}
+	
+	@Override
+	public String introduce(String alias) {
+		return String.format("[Student가 재정의] 내 이름은 %s, %s 입니다.", getName(), alias);
 	}
 }
