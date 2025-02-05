@@ -89,7 +89,7 @@ public class PolymorphismService {
 	 * 프로그램 실행 전, 컴파일 단계에서 메서드와 메서드 호출부를 연결
 	 * 
 	 * [동적 바인딩]
-	 * 프로그램 실행 중(Runtime), 정적 바인딩된 메서드를 실제 객체 타입을 기준으로 연결
+	 * 프로그램 실행 중(Runtime), 메서드 호출부를 실제 참조하는 객체에 오버라이딩된 메서드와 연결
 	 * 
 	 * 사용 이유
 	 * 1. 다운캐스팅의 번거로움을 없앰
@@ -138,6 +138,28 @@ public class PolymorphismService {
 			} else {
 				System.out.println(obj.toString());
 			}
+		}
+	}
+	
+	/*
+	 * 다운 캐스팅 시 주의 사항
+	 * 강제 형변환이 적용되는 참조 변수가 형변환 하려는 타입의 객체를 참조하고 있는지 확인이 필요
+	 * instanceof 사용
+	 */
+	public void test5() {
+		Parent p = new Child("김", 200, "소나타");
+		
+		test6(p);
+	}
+	
+	// 전달받은 객체를 String 타입으로 다운캐스팅
+	public void test6(Object obj) {
+		if(obj instanceof String) {
+			String p = (String)obj;
+			
+			System.out.println(p);
+		} else {
+			System.out.println(obj.getClass().getName());
 		}
 	}
 	
