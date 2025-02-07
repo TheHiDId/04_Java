@@ -24,6 +24,8 @@ public class RunGenerics {
 		TextBox<Child> t2 = new TextBox<Child>();
 		t2.setObj(new Child());
 		System.out.println(t2.getObj().getClass());
+		
+		TextBox<Box> t3 = new TextBox<Box>();
 	}
 	
 	/* 와일드카드 <?>

@@ -11,5 +11,4 @@ public class TextBox<T> extends Parent {
 	public void setObj(T obj) {
 		this.obj = obj;
 	}
-	
 }

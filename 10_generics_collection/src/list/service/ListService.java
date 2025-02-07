@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
+import java.util.Vector;
+
+import generics.Child;
+import generics.Parent;
 
 /* [Collection Framework]
  * 자바에서 제공하는 자료구조의 모음으로 java.util 패키지에 존재
@@ -11,7 +15,7 @@ import java.util.Random;
  * [특징]
  * 1. 크기 제한이 없음
  * 2. 추가/수정/삭제 등의 기능이 제공
- * 3. 객체만 저장 가능
+ * 3. 모든 객체 저장 가능
  * 		기본 자료형은 Wrapper Class 이용해서 저장
  * 		기본적으로 타입 제한은 없지만 개발의 편의성을 위해 제네릭스를 이용해 한가지 타입으로 제한
  */
@@ -165,5 +169,31 @@ public class ListService {
 		long end = System.currentTimeMillis();
 		
 		System.out.println("걸린 시간: " + (end - start) + "ms");
+	}
+	
+	public void test4() {
+		List<Parent> list1 = new ArrayList<Parent>();
+		
+		list1.add(new Parent());
+		
+		List<Child> list2 = new ArrayList<Child>();
+		
+		list2.add(new Child(1));
+		list2.add(new Child(2));
+		list2.add(new Child(3));
+		
+		List<Parent> list3 = new ArrayList<Parent>();
+		
+		// boolean addAll(Collection<? extends E> c); -> 컬렉션 상속 객체인 리스트나 셋을 현재 리스트의 제일 뒤에 추가
+		list3.addAll(list1);
+		list3.addAll(list2);
+		
+		List<String> temp = new ArrayList<String>();
+		
+//		list3.addAll(temp); // String은 Parent 상속 관계가 아니므로 오류
+		
+		for(Parent p : list3) {
+			System.out.println(p);
+		}
 	}
 }
