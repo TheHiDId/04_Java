@@ -15,7 +15,6 @@ import java.util.TreeSet;
 import set.dto.Person;
 
 public class SetService {
-
 	/* Set(집합)
 	 * - 기본적으로 순서 유지 X
 	 * - 중복 데이터(객체) 저장 X
@@ -36,12 +35,10 @@ public class SetService {
 	 * Set/HashSet 기본 사용법
 	 */
 	public void test1() {
-		
 		// HashSet 객체 생성
 		Set<String> set = new HashSet<String>();
 		
 		// * String은 equals(), hashCode() 오버라이딩 된 상태
-		
 		
 		/* boolean add(E e) : 요소 추가 */
 		set.add("네이버");
@@ -89,6 +86,7 @@ public class SetService {
 		
 		System.out.println("clear() 전 isEmpty() : " + set.isEmpty()); // F
 		set.clear();
+		
 		System.out.println("clear() 후 isEmpty() : " + set.isEmpty()); // T
 		
 		System.out.println("set : " + set); // []
