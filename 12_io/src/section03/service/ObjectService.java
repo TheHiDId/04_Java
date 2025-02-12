@@ -5,6 +5,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import section03.dto.Member;
 
@@ -31,7 +33,6 @@ public class ObjectService {
 			e.printStackTrace();
 			
 		} finally {
-			
 			try {
 				if(oos != null) oos.close();
 				
@@ -59,13 +60,74 @@ public class ObjectService {
 			e.printStackTrace();
 			
 		} finally {
-			
 				try {
 					if(ois != null) ois.close();
 					
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
+		}
+	}
+	
+	public void outputMemberList() {
+		FileOutputStream fos = null;
+		ObjectOutputStream oos = null;
+		
+		try {
+			List<Member> memberList = new ArrayList<Member>();
+			
+			memberList.add(new Member("m1", "p1", "짱구"));
+			memberList.add(new Member("m2", "p2", "철수"));
+			memberList.add(new Member("m3", "p3", "유리"));
+			memberList.add(new Member("m4", "p4", "맹구"));
+			memberList.add(new Member("m5", "p5", "훈이"));
+			
+			fos = new FileOutputStream("io_test\\byte\\MemberList.bin");
+			
+			oos = new ObjectOutputStream(fos);
+			
+			oos.writeObject(memberList);
+			
+			System.out.println("회원 목록 출력 완료!");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		} finally {
+			try {
+				if(oos != null) oos.close(); // 보조 스트림 닫으면 기반 스트림도 같이 닫힘
+				
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public void inputMemberList() {
+		FileInputStream fis = null;
+		ObjectInputStream ois = null;
+		
+		try {
+			fis = new FileInputStream("io_test\\byte\\MemberList.bin");
+			
+			ois = new ObjectInputStream(fis);
+			
+			List<Member> members = (List<Member>)ois.readObject();
+			
+			for(Member m : members) {
+				System.out.println(m);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		} finally {
+			try {
+				if(ois != null) ois.close();
+				
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }
