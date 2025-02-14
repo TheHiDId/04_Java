@@ -6,6 +6,7 @@ import service.MemberServiceImpl;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -131,8 +132,6 @@ public class MemberView {
 	// [2. 회원 전체 조회]
 	public void selectAll() throws IOException, ClassNotFoundException {
 		System.out.println("----- 회원 전체 조회 -----\n");
-
-		List<Member> memberList = service.getMemberList();
 		
 		String grade = null;
 		
@@ -140,7 +139,7 @@ public class MemberView {
 		System.out.println("[이름] [휴대폰 번호] [누적 금액] [등급]");
 		System.out.println("---------------------------------------");
 		
-		for(Member member : memberList) {
+		for(Member member : service.getMemberList()) {
 			if(member.getGrade() == 0) grade = "일반";
 			else if(member.getGrade() == 1) grade = "골드";
 			else grade = "다이아";
@@ -159,20 +158,67 @@ public class MemberView {
 		
 		System.out.println();
 		
-		List<Member> searchResult = service.selectName(searchName);
-		
-		for(Member result : searchResult) {
+		for(Member result : service.selectName(searchName)) {
 			System.out.println(result);
 		}
 	}
 
 	// ------------------------------------------------------------
 	// [4. 특정 회원 사용 금액 누적하기]
-	public void updateAmount() throws IOException {
+	public void updateAmount() throws IOException, ClassNotFoundException {
 		System.out.println("----- 특정 회원 사용 금액 누적하기 -----\n");
-
+		
+		// 회원 이름 입력
+		System.out.print("회원 이름 입력: ");
+		String targetName = sc.nextLine();
+		
+		System.out.println();
+		
+		Member target = new Member();
+		
+		// 입력받은 이름과 같은 이름을 가진 회원 리스트
+		List<Member> targetNameList = service.selectName(targetName);
+		
+		// 입력받은 이름이 존재하지 않을 경우 리턴
+		if(targetNameList.isEmpty()) {
+			System.out.println("### 이름이 일치하는 회원이 존재하지 않습니다 ###");
+			
+			return;
+		}
+		
+		// 입력받은 이름과 같은 회원이 하나일 경우 타겟에 입력
+		target = targetNameList.get(0);
+		
+		// 입력받은 이름과 같은 회원이 둘 이상일 경우
+		if(targetNameList.size() > 1) {
+			// 선택지 출력
+			for(int i = 0; i < targetNameList.size(); i++) {
+				System.out.println((i + 1) + ") " + targetNameList.get(i).getName() + " (" + targetNameList.get(i).getPhone() + ")");
+			}
+			
+			System.out.println();
+			
+			// 선택지 번호 입력
+			System.out.print("선택할 회원의 번호를 입력: ");
+			int selectNum = sc.nextInt();
+			
+			// 선택지에 없는 번호 입력 시 리턴
+			if(selectNum < 1 || selectNum > targetNameList.size()) {
+				System.out.println("### 잘못된 번호를 입력하셨습니다. 다시 시도해주세요 ###");
+				
+				return;
+			}
+			
+			// 입력한 선택지 번호에 해당하는 회원 타겟에 입력
+			target = targetNameList.get(selectNum - 1);
+		}
+		
+		// 추가로 누적시킬 금액 입력
+		System.out.print("누적할 금액 입력: ");
+		int acc = sc.nextInt();
+		
+		System.out.println(service.updateAmount(target, acc));
 	}
-	
 
 	// -----------------------------------------------------------------
 	// [5.회원 정보 수정]
@@ -184,7 +230,51 @@ public class MemberView {
 	
 	// ------------------------------------------------------------
 	// [6.회원 탈퇴]
-	public void deleteMember() throws IOException {
+	public void deleteMember() throws IOException, ClassNotFoundException {
+		System.out.println("----- 회원 탈퇴 -----\n");
 		
+		System.out.print("회원 이름 입력: ");
+		String targetName = sc.nextLine();
+		
+		Member target = new Member();
+		
+		// 입력받은 이름과 같은 이름을 가진 회원 리스트
+		List<Member> targetNameList = service.selectName(targetName);
+		
+		// 입력받은 이름이 존재하지 않을 경우 리턴
+		if(targetNameList.isEmpty()) {
+			System.out.println("### 이름이 일치하는 회원이 존재하지 않습니다 ###");
+			
+			return;
+		}
+		
+		// 입력받은 이름과 같은 회원이 하나일 경우 타겟에 입력
+		target = targetNameList.get(0);
+		
+		// 입력받은 이름과 같은 회원이 둘 이상일 경우
+		if(targetNameList.size() > 1) {
+			// 선택지 출력
+			for(int i = 0; i < targetNameList.size(); i++) {
+				System.out.println((i + 1) + ") " + targetNameList.get(i).getName() + " (" + targetNameList.get(i).getPhone() + ")");
+			}
+			
+			System.out.println();
+			
+			// 선택지 번호 입력
+			System.out.print("선택할 회원의 번호를 입력: ");
+			int selectNum = sc.nextInt();
+			
+			// 선택지에 없는 번호 입력 시 리턴
+			if(selectNum < 1 || selectNum > targetNameList.size()) {
+				System.out.println("### 잘못된 번호를 입력하셨습니다. 다시 시도해주세요 ###");
+				
+				return;
+			}
+			
+			// 입력한 선택지 번호에 해당하는 회원 타겟에 입력
+			target = targetNameList.get(selectNum - 1);
+			
+			service.deleteMember(target);
+		}
 	}
 }

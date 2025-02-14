@@ -39,7 +39,7 @@ public interface MemberService {
      * @throws ClassNotFoundException 
      * @throws IOException 
      */
-    List<Member> selectName(String searchName) throws ClassNotFoundException, IOException;
+    List<Member> selectName(String searchName) throws IOException, ClassNotFoundException;
 
     /**
      * 전달 받은 회원의 금액 누적하기
@@ -47,8 +47,9 @@ public interface MemberService {
      * @param acc
      * @return 결과 문자열
      * @throws IOException
+     * @throws ClassNotFoundException 
      */
-    String updateAmount(Member target, int acc) throws IOException;
+    String updateAmount(Member target, int acc) throws IOException, ClassNotFoundException;
 
     /**
      * 회원 정보(전화번호) 수정
@@ -65,6 +66,7 @@ public interface MemberService {
      * @param target
      * @return 결과 문자열
      * @throws IOException
+     * @throws ClassNotFoundException 
      */
-    String deleteMember(Member target) throws IOException;
+    String deleteMember(Member target) throws IOException, ClassNotFoundException;
 }
