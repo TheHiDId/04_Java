@@ -61,9 +61,6 @@ public class MemberServiceImpl implements MemberService {
 		// 등급 변경에 따른 메시지
 		String alertMassege = "등급이 유지됩니다"; 
 		
-		// 기존 정보 삭제
-		
-		
 		// 등급 변경 로직
 		if(beforeAmount < 100_000) {
 			if(totalAmount >= 1_000_000) {
@@ -88,8 +85,7 @@ public class MemberServiceImpl implements MemberService {
 		// 타겟에 후 누적 금액 입력
 		target.setAmount(totalAmount);
 		
-		// 타겟 회원 목록에 추가
-		mDAO.addMember(target);
+		mDAO.saveFile();
 		
 		// 메시지 리턴
 		return beforeAmount + " -> " + totalAmount + "\n" + alertMassege;
@@ -106,10 +102,8 @@ public class MemberServiceImpl implements MemberService {
 		MemberDAOImpl mDAO = new MemberDAOImpl();
 		
 		// 기존에 존재하는 정보 삭제
-		mDAO.getMemberList().remove(target);
+		if(mDAO.getMemberList().remove(target)) mDAO.saveFile();
 		
-		mDAO.saveFile();
-		
-		return null;
+		return target.getName() + " 회원이 탈퇴 처리 되었습니다";
 	}
 }

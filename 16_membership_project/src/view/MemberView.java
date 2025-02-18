@@ -174,7 +174,7 @@ public class MemberView {
 		
 		System.out.println();
 		
-		Member target = new Member();
+		Member target = null;
 		
 		// 입력받은 이름과 같은 이름을 가진 회원 리스트
 		List<Member> targetNameList = service.selectName(targetName);
@@ -236,7 +236,7 @@ public class MemberView {
 		System.out.print("회원 이름 입력: ");
 		String targetName = sc.nextLine();
 		
-		Member target = new Member();
+		Member target = null;
 		
 		// 입력받은 이름과 같은 이름을 가진 회원 리스트
 		List<Member> targetNameList = service.selectName(targetName);
@@ -274,7 +274,22 @@ public class MemberView {
 			// 입력한 선택지 번호에 해당하는 회원 타겟에 입력
 			target = targetNameList.get(selectNum - 1);
 			
-			service.deleteMember(target);
+			System.out.print("정말 탈퇴 하시겠습니까? (y/n): ");
+			char check = sc.next().toLowerCase().charAt(0);
+			
+			if(check == 'n') {
+				System.out.println("### 탈퇴 취소 ###");
+				
+				return;
+			}
+			
+			if(check != 'y') {
+				System.out.println("### 잘못된 입력입니다. 다시 시도해주세요 ###");
+				
+				return;
+			}
+			
+			System.out.println(service.deleteMember(target));
 		}
 	}
 }
